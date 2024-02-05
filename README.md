@@ -5,16 +5,21 @@ Alternative Dapr service SDK for Go.
 
 ## Basic usage example
 
+```shell
+go get github.com/tbknl/go-sdk-daprsvc
+```
+
 ```go
 package main
 
 import (
-    "github.com/tbknl/go-sdk-daprsvc"
+    daprsvc "github.com/tbknl/go-sdk-daprsvc"
 )
 
 func main() {
-    daprSvc := daprsvc.NewHttpRouter()
+    daprSvc := daprsvc.New()
+    router := daprSvc.HttpRouter()
 
-    log.Fatal(http.ListenAndServe(":8080", daprSvc))
+    log.Fatal(http.ListenAndServe(":8080", router))
 }
 ```
