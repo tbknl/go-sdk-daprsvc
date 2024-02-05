@@ -17,9 +17,37 @@ import (
 )
 
 func main() {
-    daprSvc := daprsvc.New()
-    router := daprSvc.HttpRouter()
+	appPort := os.Getenv("APP_PORT")
 
-    log.Fatal(http.ListenAndServe(":8080", router))
+    svc := daprsvc.New()
+    handler := svc.HttpHandler()
+
+    log.Fatal(http.ListenAndServe(":" + appPort, svc.HttpHandler()))
 }
+```
+
+## Setting up a Dapr service
+
+To set up a Dapr service:
+* Create a new service instance: `svc := daprsvc.New()`
+* Register handlers for the different types of services that your application provides. E.g.: `svc.SetInvocationHandler(myRouter)`
+* Create an http handler for the dapr service: `handler := svc.HttpHandler()`
+* Create an http server (using Go's built-in `net/http` module) to start listening on the port where Dapr knows to reach your service (typically the `APP_PORT` environment variable is set accordingly), using the service handler to serve incoming requests. E.g.: `http.ListenAndServe(":" + port, handler)`.
+
+See the [basic usage example](#basic-usage-example)
+
+## Features
+
+### Invocation
+
+An http handler compatible with Go's `http.Handler` can be registered to handle incoming http [service invocation requests](https://docs.dapr.io/developing-applications/building-blocks/service-invocation/service-invocation-overview/). The handler may be a router from any external package that can provide an `net/http` compatible handler.
+
+Example using the `httprouter` package for handling requests:
+```go
+router := httprouter.New()
+router.GET("/hello", func (w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
+        io.WriteString(w, "Hello world!")
+})
+
+svc.SetInvocationHandler(router)
 ```
