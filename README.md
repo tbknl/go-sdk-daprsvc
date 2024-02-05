@@ -3,6 +3,16 @@ go-sdk-daprsvc
 
 Alternative Dapr service SDK for Go.
 
+
+## Rationale
+
+Considerations for creating an alternative implementation for the Dapr service SDK:
+* Allow development with any (`net/http` compatible) http router/mux.
+* Leave control of the http server with the application developer.
+    * Allow the application to deal with graceful shutdown (including choice of time-out duration).
+    * Allow application to use either `ListenAndServe` or separate `Listen` and `Serve`.
+* Reduce module dependencies to a minimum.
+
 ## Basic usage example
 
 ```shell
