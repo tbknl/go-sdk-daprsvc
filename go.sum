@@ -1,2 +1,16 @@
 github.com/julienschmidt/httprouter v1.3.0 h1:U0609e9tgbseu3rBINet9P48AI/D3oJs4dN7jwJOQ1U=
 github.com/julienschmidt/httprouter v1.3.0/go.mod h1:JR6WtHb+2LUe8TCKY3cZOxFyyO8IZAc4RVcycCCAKdM=
+github.com/tbknl/go-functils v0.0.0-20240212232125-c5681699f48c h1:cmsA3XhQJBpU1yC8+u1AeAmCTJoRiuf6S7RqqSmCKdw=
+github.com/tbknl/go-functils v0.0.0-20240212232125-c5681699f48c/go.mod h1:scZezbFbenmQNsW195ny0G7SNTGhTw4IBFu4a3Fmw0Y=
+github.com/tbknl/go-functils v0.0.0-20240213105836-1aa447c68c09 h1:z+fdq+5g8tKnnxTfTEAtbIMenCRWsHFStLVvxvuH9b4=
+github.com/tbknl/go-functils v0.0.0-20240213105836-1aa447c68c09/go.mod h1:scZezbFbenmQNsW195ny0G7SNTGhTw4IBFu4a3Fmw0Y=
+github.com/tbknl/go-functils v0.0.0-20240213112515-df6d39cb496c h1:p9uKzH+K4VEKsk5mYlGZkhQKXBl9vXpavpB0gm1wkOU=
+github.com/tbknl/go-functils v0.0.0-20240213112515-df6d39cb496c/go.mod h1:scZezbFbenmQNsW195ny0G7SNTGhTw4IBFu4a3Fmw0Y=
+github.com/tbknl/go-functils v0.0.0-20240213112757-130a8ec72f9b h1:GWPtwaIVaam7MuHB7nXrKnjyC9JmAS0KW0bOAYwA/VY=
+github.com/tbknl/go-functils v0.0.0-20240213112757-130a8ec72f9b/go.mod h1:scZezbFbenmQNsW195ny0G7SNTGhTw4IBFu4a3Fmw0Y=
+github.com/tbknl/go-functils v0.0.0-20240213113006-403362927c22 h1:I5Nw2atopmsp4ZjbZjXeCFFhrmCKYedpZZt1TonJuao=
+github.com/tbknl/go-functils v0.0.0-20240213113006-403362927c22/go.mod h1:scZezbFbenmQNsW195ny0G7SNTGhTw4IBFu4a3Fmw0Y=
+github.com/tbknl/go-johanson v0.1.0 h1:bMV9bI5K1H4LVhOsyjV6X8icUGpogN09R1+9/flys4s=
+github.com/tbknl/go-johanson v0.1.0/go.mod h1:KNHJ3p4C9+WTdWvPVFgLsX92fgXQCTTiXKl9v/GQZr8=
+github.com/tbknl/go-johanson v0.1.1 h1:d27j1B6ibfO8yrILoAprXrzhuY8trmg4unY6Llgswoo=
+github.com/tbknl/go-johanson v0.1.1/go.mod h1:KNHJ3p4C9+WTdWvPVFgLsX92fgXQCTTiXKl9v/GQZr8=

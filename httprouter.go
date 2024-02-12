@@ -1,19 +1,29 @@
 package daprsvc
 
 import (
-	"fmt"
 	"net/http"
 
 	"github.com/julienschmidt/httprouter"
 )
 
-func indexHandler(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
-	fmt.Fprint(w, "TODO!\n")
-}
-
 func (svc *daprSvc) HttpHandler() http.Handler {
 	router := httprouter.New()
-	router.GET("/", indexHandler)
 
-	return svc.makeInvocationRequestInterceptor(router)
+	// Events
+	messageHandlerRoutePrefix := "/message"
+
+	router.HandlerFunc(http.MethodGet, "/dapr/subscribe", func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Add("Content-Type", "application/json")
+		svc.writePubsubConfigData(w, messageHandlerRoutePrefix)
+	})
+
+	for _, mwr := range svc.pubsubEntriesWithRoutes() {
+		entry := mwr.entry
+		router.POST(messageHandlerRoutePrefix+mwr.route, makeEventMessageHandler(entry))
+	}
+
+	// Invocation
+	routerWithInterceptor := svc.makeInvocationRequestInterceptor(router)
+
+	return routerWithInterceptor
 }

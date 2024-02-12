@@ -61,3 +61,24 @@ router.GET("/hello", func (w http.ResponseWriter, r *http.Request, _ httprouter.
 
 svc.SetInvocationHandler(router)
 ```
+
+### Pub-sub
+
+Register message handlers for subscriptions to topics on a Dapr pubsub component. The endpoint `/dapr/subscribe` will automatically expose all subscription information to the Dapr daemon.
+
+Example:
+```go
+myPubsub := svc.NewPubsub("my-pubsub")
+
+myPubsub.RegisterMessageHandler("orders", daprsvc.PubsubOptions{}, func(ctx context.Context, msg daprsvc.Message) daprsvc.MessageResult {
+    data := make(map[string]interface{})
+    jsonErr := msg.Json(&data)
+    if jsonErr != nil {
+        return daprsvc.MessageResultDrop(jsonErr)
+    }
+    fmt.Printf("Order %s received!\n", order["id"])
+
+    return daprsvc.MessageResultSuccess()
+})
+```
+
