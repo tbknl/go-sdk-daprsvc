@@ -30,7 +30,7 @@ func main() {
 	appPort := os.Getenv("APP_PORT")
 
     svc := daprsvc.New()
-    handler := svc.HttpHandler()
+    // Add http invocation handler or pubsub handlers to `svc` here. See examples below.
 
     log.Fatal(http.ListenAndServe(":" + appPort, svc.HttpHandler()))
 }
@@ -72,8 +72,7 @@ myPubsub := svc.NewPubsub("my-pubsub")
 
 myPubsub.RegisterMessageHandler("orders", daprsvc.PubsubOptions{}, func(ctx context.Context, msg daprsvc.Message) daprsvc.MessageResult {
     data := make(map[string]interface{})
-    jsonErr := msg.Json(&data)
-    if jsonErr != nil {
+    if jsonErr := msg.Json(&data); jsonErr != nil {
         return daprsvc.MessageResultDrop(jsonErr)
     }
     fmt.Printf("Order %s received!\n", order["id"])
